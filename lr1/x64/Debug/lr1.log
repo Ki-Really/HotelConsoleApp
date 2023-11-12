@@ -1,0 +1,11 @@
+﻿  main.cpp
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(233,17): warning C4102: std: неиспользованная метка
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(446,17): warning C4101: schedule_id: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(608,17): warning C4101: wait: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(649,17): warning C4101: wait: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(817,17): warning C4101: wait: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(838,17): warning C4101: people_count: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(984,17): warning C4101: wait: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(1329,17): warning C4101: wait: неиспользованная локальная переменная
+D:\Institute\7semester\appAndDbDeveloping\lr1\lr1\main.cpp(1399,17): warning C4101: wait: неиспользованная локальная переменная
+  lr1.vcxproj -> D:\Institute\7semester\appAndDbDeveloping\lr1\x64\Debug\lr1.exe
