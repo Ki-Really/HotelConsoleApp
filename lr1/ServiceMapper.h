@@ -13,7 +13,5 @@ public:
 	void deleteService(Service& service);
 	void deleteServiceByGuestId(int id);
 	std::vector<Service> getAll();
-	//void updateSchedule(Service service);
-	
 };
 

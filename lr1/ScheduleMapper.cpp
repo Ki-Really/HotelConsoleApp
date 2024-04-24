@@ -15,8 +15,6 @@ Schedule ScheduleMapper::createSchedule(Schedule& givenSchedule) {
     Schedule scheduleToReturn;
    
 
-  
-
     const wchar_t* query = L"Insert Into schedule(day,time,maid_id,room_id) values(?,?,?,?) returning id";
 
     SQLRETURN returnCode = SQLAllocHandle(
@@ -186,51 +184,6 @@ void ScheduleMapper::updateSchedule(Schedule& givenSchedule) {
     return;
 }
 
-//Schedule ScheduleMapper::findById(int schedule_id) {
-//    SQLHSTMT statement;
-//    Schedule schedule;
-//    const wchar_t* query = L"Select id,day,time From schedule where id = ?";
-//
-//    SQLRETURN returnCode = SQLAllocHandle(
-//        SQL_HANDLE_STMT,
-//        this->connection->connection,
-//        &statement
-//    );
-//
-//    returnCode = SQLPrepare(
-//        statement,
-//        (SQLWCHAR*)query,
-//        SQL_NTS
-//    );
-//
-//    SQLBindParameter(
-//        statement, 1,
-//        SQL_PARAM_INPUT, SQL_C_LONG,
-//        SQL_INTEGER, 0, 0, &schedule_id, sizeof(schedule_id), nullptr
-//    );
-//
-//    if (returnCode != SQL_SUCCESS) {
-//        showError(SQL_HANDLE_STMT, statement);
-//        return schedule;
-//    }
-//    returnCode = SQLExecute(statement);
-//
-//    std::wstring day;
-//    std::wstring time;
-//    int id = 0;
-//
-//    while (SQL_SUCCESS == SQLFetch(statement)) {
-//        SQLGetData(statement, 1, SQL_C_ULONG, &id, 0, NULL);
-//        SQLGetData(statement, 2, SQL_C_WCHAR, &day, 255, NULL);
-//        SQLGetData(statement, 3, SQL_C_WCHAR, &time, 255, NULL);
-//    }
-//    schedule = Schedule(id, day, time);
-//
-//
-//    SQLFreeHandle(SQL_HANDLE_STMT, statement);
-//    return schedule;
-//}
-
 std::vector<Schedule> ScheduleMapper::getAll() {
     SQLHSTMT statement;
     std::vector<Schedule> scheduleVector;
@@ -256,9 +209,6 @@ std::vector<Schedule> ScheduleMapper::getAll() {
     int id = -1;
     int maid_id =-1;
     int room_id = -1;
-   
-
-    
 
     while (SQL_SUCCESS == SQLFetch(statement)) {
         SQLGetData(statement, 1, SQL_C_ULONG, &id, 0, NULL);

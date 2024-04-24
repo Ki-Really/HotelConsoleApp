@@ -1,7 +1,5 @@
 #include "AddressMapper.h"
 #include "PassportMapper.h"
-//#include "ScheduleMapper.h"
-
 #include "MaidMapper.h"
 #include "ShowError.h"
 
@@ -16,11 +14,8 @@ Maid MaidMapper::createMaid(Maid& givenMaid) {
     SQLHSTMT statement;
     Maid maid;
     AddressMapper addressMapper = AddressMapper(this->connection);
-    //ScheduleMapper scheduleMapper = ScheduleMapper(this->connection);
     connection->startTransaction();
     givenMaid.address = addressMapper.createAddress(givenMaid.address);
-   // scheduleMapper.deleteSchedule(givenMaid);
-    //givenMaid.schedule = scheduleMapper.createSchedule(givenMaid.schedule);
     const wchar_t* query = L"Insert Into maid(name,surname,patronymic,address_id) values(?,?,?,?) returning id";
 
     SQLRETURN returnCode = SQLAllocHandle(
@@ -187,7 +182,6 @@ std::vector<Maid> MaidMapper::getAll() {
         &statement
     );
 
-
     returnCode = SQLExecDirect(statement, (SQLWCHAR*)query, SQL_NTS);
 
     if (returnCode != SQL_SUCCESS) {
@@ -204,7 +198,6 @@ std::vector<Maid> MaidMapper::getAll() {
     int building = 0;
     int id = 0;
     int address_id = 0;
-
 
     while (SQL_SUCCESS == SQLFetch(statement)) {
         SQLGetData(statement, 1, SQL_C_LONG, &id, 0, NULL);

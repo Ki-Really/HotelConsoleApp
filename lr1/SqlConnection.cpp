@@ -88,8 +88,6 @@ SQLRETURN SQLConnection::init(SQLCHAR* dsn, SQLCHAR* user, SQLCHAR* password) {
     SQLUINTEGER supports;
     SQLUSMALLINT max_concur_act;
     SQLSMALLINT string_len;
-
-    //Сбор данных из бд. Что она поддерживает и как с ней работать
     SQLGetInfo(
         connection,
         SQL_DBMS_NAME, (SQLPOINTER)dbms_name,

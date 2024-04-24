@@ -12,7 +12,6 @@ public:
 
 	void createServiceGuest(ServiceGuest serviceGuest);
 	void deleteServiceGuest(int service_id);
-	//void deleteServiceByGuestId(int id);
 	std::vector<ServiceGuest> getAll();
 
 };

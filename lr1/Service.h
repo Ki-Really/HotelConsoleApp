@@ -7,7 +7,6 @@ public:
 	wstring service_name;
 	int guest_id;
 	
-	
 	Service(int id,wstring service_name,int guest_id);
 	Service();
 	~Service();

@@ -41,8 +41,6 @@ void ServiceGuestMapper::createServiceGuest(ServiceGuest givenServiceGuest) {
 
     returnCode = SQLExecute(statement);
 
-   
-
     SQLFreeHandle(SQL_HANDLE_STMT, statement);
     return;
 }

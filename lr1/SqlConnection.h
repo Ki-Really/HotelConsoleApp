@@ -19,4 +19,3 @@ public:
 	SQLRETURN init(SQLCHAR* dsn, SQLCHAR* user, SQLCHAR* password);
 };
 
-//SQLRETURN init(SQLWCHAR* dsn, SQLWCHAR* user, SQLWCHAR* password);

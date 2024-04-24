@@ -32,11 +32,6 @@ Service ServiceMapper::createService(Service& givenService, int guest_id) {
         SQL_PARAM_INPUT, SQL_C_WCHAR,
         SQL_VARCHAR, 255, 0, (WCHAR*)givenService.service_name.c_str(), sizeof(givenService.service_name), nullptr
     );
-    /*SQLBindParameter(
-        statement, 2,
-        SQL_PARAM_INPUT, SQL_C_LONG,
-        SQL_INTEGER, 0, 0, &givenService.guest_id, sizeof(givenService.guest_id), nullptr
-    );*/
 
     returnCode = SQLExecute(statement);
 
@@ -51,14 +46,7 @@ Service ServiceMapper::createService(Service& givenService, int guest_id) {
 
     SQLFreeHandle(SQL_HANDLE_STMT, statement);
 
-
-
-
-
-
-
     SQLHSTMT statement1;
-   
 
     const wchar_t* query1 = L"Insert Into guest_service(guest_id,service_id) values(?,?)";
 

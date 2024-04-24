@@ -1,6 +1,5 @@
 #include "Maid.h"
 
-
 Maid::Maid(int id, wstring name, wstring surname, wstring patronymic, Address address) {
 	this->id = id;
 	this->name.assign(name);

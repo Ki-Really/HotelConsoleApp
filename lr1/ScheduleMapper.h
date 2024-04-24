@@ -17,6 +17,4 @@ public:
 	void deleteScheduleByMaidId(int id);
 	void updateSchedule(Schedule& schedule);
 	std::vector<Schedule> getAll();
-	//Schedule findById(int id);
-	
 };

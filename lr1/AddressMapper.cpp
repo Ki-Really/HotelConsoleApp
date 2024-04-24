@@ -4,10 +4,9 @@
 AddressMapper::AddressMapper(SQLConnection* connection) {
     this->connection = connection;
 }
+
 AddressMapper::~AddressMapper() {
-
 }
-
 
 Address AddressMapper::createAddress(Address& givenAddress) {
     SQLHSTMT statement;
@@ -48,13 +47,11 @@ Address AddressMapper::createAddress(Address& givenAddress) {
     );
 
     returnCode = SQLExecute(statement);
-    
 
     SQLFetch(statement);
     SQLGetData(statement, 1, SQL_C_ULONG, &givenAddress.id, 0, NULL);
     std::wcout << "Retrieved: " << givenAddress.id << std::endl;
    
-
     if (returnCode != SQL_SUCCESS) {
         showError(SQL_HANDLE_STMT, statement);
         return address;
@@ -63,8 +60,6 @@ Address AddressMapper::createAddress(Address& givenAddress) {
     address = Address(givenAddress.id, givenAddress.country, givenAddress.city, givenAddress.street, givenAddress.building);
     SQLFreeHandle(SQL_HANDLE_STMT, statement);
     return address;
-
-
 }
 
 void AddressMapper::deleteAddress(Address& addressToDelete) {
@@ -75,6 +70,7 @@ void AddressMapper::deleteAddress(Address& addressToDelete) {
         this->connection->connection,
         &statement
     );
+
     const wchar_t* query = L"delete from address1 where id = ?";
 
     returnCode = SQLPrepare(
@@ -121,21 +117,25 @@ void AddressMapper::updateAddress(Address& givenAddress){
         SQL_PARAM_INPUT, SQL_C_WCHAR,
         SQL_VARCHAR, 255, 0, (WCHAR*)givenAddress.country.c_str(), sizeof(givenAddress.country), nullptr
     );
+
     SQLBindParameter(
         statement, 2,
         SQL_PARAM_INPUT, SQL_C_WCHAR,
         SQL_VARCHAR, 255, 0, (WCHAR*)givenAddress.city.c_str(), sizeof(givenAddress.city), nullptr
     );
+
     SQLBindParameter(
         statement, 3,
         SQL_PARAM_INPUT, SQL_C_WCHAR,
         SQL_VARCHAR, 255, 0, (WCHAR*)givenAddress.street.c_str(), sizeof(givenAddress.street), nullptr
     );
+
     SQLBindParameter(
         statement, 4,
         SQL_PARAM_INPUT, SQL_C_LONG,
         SQL_INTEGER, 0, 0, &givenAddress.building, sizeof(givenAddress.building), nullptr
     );
+
     SQLBindParameter(
         statement, 5,
         SQL_PARAM_INPUT, SQL_C_LONG,
@@ -146,8 +146,8 @@ void AddressMapper::updateAddress(Address& givenAddress){
         showError(SQL_HANDLE_STMT, statement);
         return;
     }
-    returnCode = SQLExecute(statement);
 
+    returnCode = SQLExecute(statement);
 
     SQLFreeHandle(SQL_HANDLE_STMT, statement);
     return;

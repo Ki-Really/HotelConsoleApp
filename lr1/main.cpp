@@ -58,7 +58,6 @@ bool isValidDate(const std::wstring& input) {
         }
     }
     catch (const std::invalid_argument&) {
-       
         return false;
     }
 
@@ -105,8 +104,6 @@ void room_menu_cases(SQLConnection* connection) {
 
             wcin.clear();
             wcin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-
             std::wcout << L"Неверный ввод (введите номер пункта)!" << endl;
 
         }
@@ -128,8 +125,6 @@ void room_menu_cases(SQLConnection* connection) {
                     wstring str;
                     wcin >> str;
                     flag = 1;
-                    /*room_menu_cases(connection);
-                    break;*/
                 }
 
             }
@@ -262,13 +257,11 @@ void room_menu_cases(SQLConnection* connection) {
             break;
         }
         }
-
     }
 }
 
 void schedule_menu_options() {
     setlocale(LC_ALL, "rus_rus.866");
-
 
     _setmode(_fileno(stdout), _O_U16TEXT);
     system("cls"); 
@@ -298,7 +291,6 @@ void schedule_menu_cases(SQLConnection* connection) {
 
             wcin.clear();
             wcin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 
             std::wcout << L"Неверный ввод (введите номер пункта)!" << endl;
 
@@ -347,7 +339,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                 std::wcout << L"Неверный ввод (введите число)!" << endl;
             }
 
-
             int room_id;
             std::wcout << L"Список всех комнат: " << endl;
             wcout << L"Индекс " << setw(15) << L"Номер комнаты " << setw(15) << L"Рассчитана на N человек " << endl;
@@ -363,13 +354,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                 std::wcout << L"Неверный ввод (введите число)!" << endl;
             }
            
-            
-           /* for (int i = 0; i < maidVector.size(); i++) {
-                if (maid_id == i ) {
-                    maid_id = maidVector[i].id; 
-                    
-                }
-            }*/
             maid_id = maidVector[maid_id].id;
             for (int i = 0; i < roomVector.size(); i++) {
                 if (room_id == i) {
@@ -382,9 +366,6 @@ void schedule_menu_cases(SQLConnection* connection) {
             schedule1 = scheduleMapper.createSchedule(schedule);
             scheduleVector.emplace_back(schedule1);
             scheduleVector = scheduleMapper.getAll();
-            
-           
-         
             break;
         }
 
@@ -437,8 +418,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                     break;
                 }
             }
-           
-           
             std::wcout << "График успешно удален!" << endl;
             break;
         }
@@ -514,7 +493,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                     break;
                 }
             }
-           
 
             break;
         }
@@ -526,8 +504,7 @@ void schedule_menu_cases(SQLConnection* connection) {
                     if (maidVector[j].id == scheduleVector[i].maid_id) {
                         maidIdVector.emplace_back(j);
                     }
-                }
-                
+                } 
             }
             std::vector<int> roomIdVector;
             for (int i = 0; i < scheduleVector.size(); i++) {
@@ -536,7 +513,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                         roomIdVector.emplace_back(j);
                     }
                 }
-
             }
             std::wcout << L"Список всех расписаний: " << endl;
             wcout << L"Индекс " << setw(15) << L"День недели " << setw(15) << L"Время начала уборки " << setw(15) << L"Индекс уборщицы " << 
@@ -548,8 +524,6 @@ void schedule_menu_cases(SQLConnection* connection) {
                     setw(15) << roomIdVector[i] << endl;
             }
 
-
-          
             wstring wait;
             wcout << L"Введите что нибудь для продолжения!" << endl;
             std::wcin >> wait;
@@ -631,7 +605,6 @@ void maid_menu_cases(SQLConnection* connection) {
                 wcin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::wcout << L"Неверный ввод (введите число)!" << endl;
             }
-           
 
             Address address(-1,country,city,street,building);
            
@@ -644,7 +617,6 @@ void maid_menu_cases(SQLConnection* connection) {
         }
 
         case 2: {
-            
             int maid_id;
             int wait;
             std::wcout << L"Список всех уборщиц: " << endl;
@@ -672,10 +644,6 @@ void maid_menu_cases(SQLConnection* connection) {
                     break;
                 }
             }
-
-           
-           
-          
             break;
         }
         case 3: {
@@ -741,7 +709,6 @@ void maid_menu_cases(SQLConnection* connection) {
                 }
             }
            
-
             break;
         }
         case 4: {
@@ -792,8 +759,6 @@ void guest_menu_options() {
 void guest_menu_cases(SQLConnection* connection) {
     Mapper* guestMapper = new Mapper(connection);
     AddressMapper* addressMapper = new AddressMapper(connection);
-    /*PassportMapper passportMapper = PassportMapper(connection);
-    std::vector<Passport> passportVector = passportMapper.getAll();*/
     RoomMapper* roomMapper = new RoomMapper(connection);
     std::vector<Room> roomVector = roomMapper->getAll();
     int choice = 0;
@@ -898,7 +863,6 @@ void guest_menu_cases(SQLConnection* connection) {
                 break;
             }
 
-
             std::wcout << L"Введите страну" << endl;
             std::wcin >> country;
             std::wcout << L"Введите город" << endl;
@@ -974,8 +938,6 @@ void guest_menu_cases(SQLConnection* connection) {
                 
             }
 
-           
-            
             break;
         }
 
@@ -1015,9 +977,7 @@ void guest_menu_cases(SQLConnection* connection) {
                     break;
                 }
             }
-           
-
-            
+          
             break;
         }
         case 3: {
@@ -1116,7 +1076,6 @@ void guest_menu_cases(SQLConnection* connection) {
                         }
                     }
 
-
                     std::wcout << L"Введите номер автомобиля" << endl;
                     std::wcin >> auto_number;
                     std::wcout << L"Введите дату прибытия" << endl;
@@ -1137,7 +1096,6 @@ void guest_menu_cases(SQLConnection* connection) {
                         wcin >> str;
                         break;
                     }
-
 
                     std::wcout << L"Введите страну" << endl;
                     std::wcin >> country;
@@ -1180,9 +1138,6 @@ void guest_menu_cases(SQLConnection* connection) {
                     std::wcout << L"Введите кем выдан пасспорт" << endl;
                     std::wcin >> givenBy;
 
-
-
-
                     wcout << L"Введите номер комнаты заселения" << endl;
                     while (!(wcin >> room_number)) {
                         wcin.clear();
@@ -1198,8 +1153,6 @@ void guest_menu_cases(SQLConnection* connection) {
                                 room_number = roomVector[i].number;
                                 RoomMapper roomMapper = RoomMapper(connection);
                                 Room room1 = roomMapper.findRoomByNumber(room_number);
-
-                               
 
                                 Address updatedAddress(addressId, country, city, street, building);
                                 Passport updatedPassport(passportId, passport_number, issuance, givenBy);
@@ -1222,13 +1175,10 @@ void guest_menu_cases(SQLConnection* connection) {
                         }
 
                     }
-
                     
                     break;
                 }
             }
-            
-
             break;
         }
         case 4: {
@@ -1250,9 +1200,6 @@ void guest_menu_cases(SQLConnection* connection) {
                 wcout << endl;
             }
 
-
-  
-
             std::wcout << L"Введите любую клавишу для продолжения!" <<std::endl;
             std::wstring wait;
             std::wcin >> wait;
@@ -1269,13 +1216,11 @@ void guest_menu_cases(SQLConnection* connection) {
             break;
         }
         }
-
     }
 }
 
 void service_menu_options() {
     setlocale(LC_ALL, "rus_rus.866");
-
     _setmode(_fileno(stdout), _O_U16TEXT);
     system("cls"); 
     std::wcout << L"Выберите действие!" << endl;
@@ -1344,8 +1289,7 @@ void service_menu_cases(SQLConnection* connection) {
                 std::wcout << L"Неверный ввод (введите число)!" << endl;
             }
 
-
-                    guest_id = guestVector[guest_id].id;
+            guest_id = guestVector[guest_id].id;
 
             Service service = Service(-1, service_name,guest_id);
 
@@ -1354,9 +1298,6 @@ void service_menu_cases(SQLConnection* connection) {
             serviceVector.emplace_back(serviceToGet);
             
             serviceVector = serviceMapper.getAll();
-           
-
-
             break;
         }
 
@@ -1409,15 +1350,13 @@ void service_menu_cases(SQLConnection* connection) {
             wcout << setfill(L' ');
             for (int i = 0; i < serviceVector.size(); i++) {
                 
-                wcout << i << setw(15) << serviceVector[i].service_name << setw(15)<</*serviceVector[i].guest_id*/guestIdVector[i]<< endl;
+                wcout << i << setw(15) << serviceVector[i].service_name << setw(15)<<guestIdVector[i]<< endl;
             }
 
             std::wcout << L"Нажмите любую цифру для продолжения!" << std::endl;
 
             wstring wait;
             std::wcin >> wait;
-            
-
             break;
         }
         case 4: {
@@ -1445,7 +1384,7 @@ int main() {
     connection.init(
         (SQLCHAR*)L"PostgreSQL35W",
         (SQLCHAR*)L"postgres",
-        (SQLCHAR*)L""//password
+        (SQLCHAR*)L""
     );
 
     Migrations migrations = Migrations(&connection);

@@ -18,7 +18,6 @@ Mapper::~Mapper() {
 
 }
 
-
 Guest Mapper::createGuest(Guest& givenGuest) {
 
     AddressMapper addressMapper = AddressMapper(this->connection);
@@ -151,7 +150,7 @@ void Mapper::deleteGuest(Guest& givenGuest){
         }
         
     }
-    //serviceMapper.deleteServiceByGuestId(givenGuest.id);
+
     SQLRETURN returnCode = SQLAllocHandle(
         SQL_HANDLE_STMT,
         this->connection->connection,
@@ -181,10 +180,6 @@ void Mapper::deleteGuest(Guest& givenGuest){
     }
 
     SQLFreeHandle(SQL_HANDLE_STMT, statement);
-
-
-
-
 
     connection->commitTransaction();
     return;
@@ -337,9 +332,6 @@ std::vector<Guest> Mapper::getAll() {
     int room_id = 0;
     int room_number = 0;
     int people_count = 0;
-
-
-
 
     while (SQL_SUCCESS == SQLFetch(statement)) {
         SQLGetData(statement, 1, SQL_C_LONG, &id, 0, NULL);

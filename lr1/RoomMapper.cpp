@@ -1,6 +1,5 @@
 #include "RoomMapper.h"
 #include "ShowError.h"
-//#include "Mapper.h"
 
 RoomMapper::RoomMapper(SQLConnection* connection) {
 	this->connection = connection;
@@ -86,7 +85,6 @@ Room RoomMapper::findRoomByNumber(int& room_number) {
         SQLGetData(statement, 1, SQL_C_ULONG, &id, 0, NULL);
         SQLGetData(statement, 2, SQL_C_ULONG, &number, 0, NULL);
         SQLGetData(statement, 3, SQL_C_ULONG, &people_count, 0, NULL);
-       // std::wcout << "Retrieved: " << number << " " << people_count << std::endl;
     }
     room = Room(id, number, people_count);
 
@@ -98,8 +96,6 @@ Room RoomMapper::findRoomByNumber(int& room_number) {
 void RoomMapper::deleteRoom(int& room_number) {
     
     SQLHSTMT statement;
-    /*Mapper mapper = Mapper(connection);
-    mapper.deleteGuest()*/
 
     SQLRETURN returnCode = SQLAllocHandle(
         SQL_HANDLE_STMT,
